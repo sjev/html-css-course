@@ -1,6 +1,7 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: sans-serif;
   font-size: small;
+  line-height: 1.4;
 }
 
 .product {
@@ -9,6 +10,7 @@ body {
 }
 
 .product .product-title {
+  font-size: 22px;
   background-color: #f1f1f1;
   text-transform: uppercase;
   text-align: center;
@@ -16,13 +18,16 @@ body {
 
 .price {
   font-size: large;
+
 }
 
 .shipping {
   text-transform: uppercase;
+  color: gray;
+  font-weight: bold;
 }
 
-.product a, a:visited{
+.more-info:link, .more-info:visited {
   text-decoration: underline;
   color: black;
 }
@@ -30,7 +35,7 @@ body {
 
 
 /* remove underline on hover */
-.product a:hover {
+.more-info:link:hover, .more-info:active{
   text-decoration: none;
 }
 
@@ -48,4 +53,10 @@ body {
   font-size: large;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+/* format button as white on hover */
+.product button:hover {
+  background-color: white;
+  color: black;
 }
