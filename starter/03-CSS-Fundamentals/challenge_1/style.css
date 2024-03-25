@@ -1,0 +1,43 @@
+body {
+  font-family: Arial, sans-serif;
+  font-size: small;
+}
+
+.product {
+  border: 3px solid black;
+
+}
+
+.product .product-title {
+  background-color: #f1f1f1;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.price {
+  font-size: large;
+}
+
+.shipping {
+  text-transform: uppercase;
+}
+
+.product a {
+  text-decoration: underline;
+  color: black;
+}
+
+.product li {
+  list-style-type: square;
+}
+
+/* format button as black */
+.product button {
+  background-color: black;
+  color: white;
+  border: none;
+  text-align: center;
+  font-size: large;
+  text-transform: uppercase;
+  cursor: pointer;
+}
