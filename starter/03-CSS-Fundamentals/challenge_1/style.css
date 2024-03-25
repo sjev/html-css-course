@@ -22,10 +22,18 @@ body {
   text-transform: uppercase;
 }
 
-.product a {
+.product a, a:visited{
   text-decoration: underline;
   color: black;
 }
+
+
+
+/* remove underline on hover */
+.product a:hover {
+  text-decoration: none;
+}
+
 
 .product li {
   list-style-type: square;
