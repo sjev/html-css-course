@@ -5,17 +5,71 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.green.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.cyan.min.css" />
+  <link rel="stylesheet" href="custom.css" />
   <title>Hello world!</title>
 </head>
 
 <body>
-  <main class="container">
-    <h1>Hello world!</h1>
-    <article aria-label="Theme switcher" id="theme-switcher">
+
+
+  <main class="container has-table-of-contents page-forms-textarea">
+    <nav>
+      <ul>
+        <li><strong>Acme Corp</strong></li>
+      </ul>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Products</a></li>
+      </ul>
+    </nav>
+    <section>
+      <header>
+        <h1>Hello world!</h1>
+      </header>
+      <p>Some words about nothing...</p>
+    </section>
+    <section id="theme-switcher">
       <button class="contrast" id="theme-toggle">Turn off dark mode</button>
+    </section>
+    <section>
+      <label for="appointment-date">Select a date:</label>
+      <input type="date" id="appointment-date" name="appointment-date">
+    </section>
+
+    <article>
+      <div class="grid demo">
+        <!-- Grid items for main article content -->
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+      </div>
     </article>
+    <aside id="documentation-menu">
+      <div class="grid demo">
+        <!-- Grid items for aside content -->
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+      </div>
+    </aside>
   </main>
+  <footer>
+    <!-- Footer content here -->
+  </footer>
   <script>
     const toggleButton = document.getElementById('theme-toggle');
     toggleButton.addEventListener('click', function () {
@@ -28,6 +82,10 @@
         toggleButton.textContent = 'Turn off dark mode';
       }
     });
+
+    // Set appointment-date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('appointment-date').value = today;
   </script>
 </body>
 

@@ -1,0 +1,10 @@
+.demo div {
+  background-color: greenyellow;
+  border: 1px solid black;
+
+}
+
+/* alternate demo elements */
+.demo div:nth-child(2n) {
+  background-color: lightblue;
+}
