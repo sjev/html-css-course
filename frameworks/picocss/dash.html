@@ -23,7 +23,7 @@
 
     .menu {
       border-right: 1px solid #ccc;
-      min-width: 160px;
+      min-width: 240px;
     }
   </style>
 </head>
@@ -31,12 +31,23 @@
 <body>
   <aside class="menu">
     <nav>
-      <h2>Menu</h2>
+      <h2>Menu <mark>new</mark></h2>
+
       <ul>
-        <li><a href="#">Link 1</a></li>
-        <li><a href="#">Link 2</a></li>
-        <li><a href="#">Link 3</a></li>
+        <li><a class="secondary" href="#">Link 1</a></li>
+        <li><a class="secondary" href="#">Link 2</a></li>
+        <li><a class="secondary" href="#">Link 3</a></li>
       </ul>
+      <details>
+        <summary>Subsections</summary>
+        <ul>
+          <li><a class="secondary" href="#">Quick start</a></li>
+          <li><a class="secondary" href="#">Version picker </a></li>
+          <li><a class="secondary" href="#">Color schemes</a></li>
+          <li><a class="secondary" href="#">Class-less version</a></li>
+          <li><a class="secondary" href="#">Conditional styling </a></li>
+        </ul>
+      </details>
     </nav>
   </aside>
   <div class="content demo">
