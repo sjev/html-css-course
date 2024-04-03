@@ -6,8 +6,21 @@
 }
 
 .main-content {
-  position: relative;
+  display:flex;
+  justify-content: flex-start;
+  gap: 20px;
 }
+
+.main-article {
+  position: relative;
+  flex: 1 ;
+}
+
+.main-content aside {
+  /* background-color: lightgreen; */
+  flex: 0 0 300px;
+}
+
 
 .top-promo {
   border-radius: var(--pico-border-radius);
@@ -27,11 +40,14 @@
   cursor: pointer;
 
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 60px;
+  right: -10px;
 }
 
+
+
 footer {
+  position:relative;
   padding: 20px;
   text-align: center;
 
