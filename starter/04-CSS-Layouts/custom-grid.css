@@ -5,11 +5,9 @@
   margin-bottom: 20px;
 }
 
-
-.main-article {
+.main-content {
   position: relative;
 }
-
 
 
 .top-promo {
@@ -19,10 +17,6 @@
   right: -10px;
 }
 
-.author-box {
-  margin-bottom: 15px;
-
-}
 
 #like-button {
   font-size: 22px;
@@ -43,4 +37,24 @@ footer {
 
   bottom: 0;
   width: 100%;
+  grid-column: 1/-1;
+  grid-row: 3;
 }
+
+.container {
+  display: grid;
+  column-gap: 20px;
+  grid-template-columns: 1fr 300px;
+}
+
+nav {
+  grid-column: 1/-1;
+  grid-row: 1;
+}
+
+aside {
+
+  grid-column: 2;
+  grid-row: 2;
+}
+
