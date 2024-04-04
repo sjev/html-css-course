@@ -42,9 +42,12 @@ footer {
 }
 
 .container {
+  margin-top: 20px;
   display: grid;
   column-gap: 20px;
+  row-gap: 20px;
   grid-template-columns: 2fr 1fr;
+  align-items: stat;
 }
 
 nav {
