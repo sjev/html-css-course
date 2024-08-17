@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sine Wave Visualizer with uPlot</title>
+  <title>Sine Wave with Noise Visualizer</title>
   <link rel="stylesheet" href="https://unpkg.com/uplot/dist/uPlot.min.css">
   <style>
     body {
@@ -29,18 +29,18 @@
   <script src="https://unpkg.com/uplot/dist/uPlot.iife.min.js"></script>
   <script>
     // Basic sine wave parameters
-    const amplitude = 1;  // Amplitude of the wave
-    const frequency = 0.1; // Frequency of the wave
-    const interval = 100;  // Update interval in ms
+    const amplitude = 1;   // Amplitude of the sine wave
+    const frequency = 0.1; // Frequency for sine calculation (smoothness)
+    const noiseLevel = 0.2; // Noise level added to sine wave
 
     // Data buffer for scrolling window
     const dataSize = 100;  // Number of data points displayed
-    const xData = Array.from({ length: dataSize }, (_, i) => i);  // X values (time)
+    const xData = Array.from({ length: dataSize }, (_, i) => i);  // X values (time steps)
     let yData = Array.from({ length: dataSize }, (_, i) => Math.sin(i * frequency));  // Initial sine wave Y values
 
     // uPlot chart configuration
     const options = {
-      title: "Scrolling Sine Wave",
+      title: "Sine Wave with Noise (5 Hz plotting)",
       width: 800,
       height: 400,
       scales: {
@@ -50,7 +50,7 @@
       series: [
         {},  // Placeholder for x-axis
         {
-          label: "Sine Wave",
+          label: "Sine + Noise",
           stroke: "blue",
           width: 2,
         }
@@ -60,23 +60,33 @@
     // Create the chart with initial data
     const uPlotInstance = new uPlot(options, [xData, yData], document.getElementById("chart"));
 
-    // Update function to animate the sine wave
-    function updateSineWave() {
-      // Shift the data to simulate scrolling
-      yData.shift();  // Remove the oldest data point
+    // Function to generate sine wave with superimposed noise (10 Hz)
+    function generateData() {
+      // Remove the oldest data point
+      yData.shift();
+
+      // Generate new sine wave value with noise
       const lastX = xData[xData.length - 1];
-      const newY = amplitude * Math.sin((lastX + 1) * frequency);
-      yData.push(newY);  // Add a new sine value at the end
+      const sineValue = amplitude * Math.sin((lastX + 1) * frequency);
+      const noise = (Math.random() - 0.5) * noiseLevel; // Add some random noise
+      const newValue = sineValue + noise;
 
-      // Update the chart data
-      uPlotInstance.setData([xData, yData]);
-
-      // Call the function again to keep updating
-      setTimeout(updateSineWave, interval);
+      // Append the new value
+      yData.push(newValue);
     }
 
-    // Start updating the sine wave
-    updateSineWave();
+    // Function to plot data at 5 Hz
+    function plotData() {
+      uPlotInstance.setData([xData, yData]);
+    }
+
+    // Set intervals for both functions
+    const generateInterval = 20;  // 10 Hz = 100 ms per generation
+    const plotInterval = 20;      // 5 Hz = 200 ms per plotting
+
+    setInterval(generateData, generateInterval);  // Generate sine wave with noise at 10 Hz
+    setInterval(plotData, plotInterval);          // Plot the updated data at 5 Hz
+
   </script>
 </body>
 
