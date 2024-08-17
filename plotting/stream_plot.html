@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sine Wave with Noise Visualizer</title>
+  <title>Brython Sine Wave Visualizer</title>
   <link rel="stylesheet" href="https://unpkg.com/uplot/dist/uPlot.min.css">
   <style>
     body {
@@ -21,22 +21,48 @@
       height: 400px;
     }
   </style>
+  <script src="https://unpkg.com/uplot/dist/uPlot.iife.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/brython@3/brython.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/brython@3/brython_stdlib.js"></script>
 </head>
 
-<body>
+<body onload="brython()">
   <div id="chart"></div>
 
-  <script src="https://unpkg.com/uplot/dist/uPlot.iife.min.js"></script>
-  <script>
-    // Basic sine wave parameters
-    const amplitude = 1;   // Amplitude of the sine wave
-    const frequency = 0.1; // Frequency for sine calculation (smoothness)
-    const noiseLevel = 0.2; // Noise level added to sine wave
+  <script type="text/python">
+        from browser import window
+        import math
+        import random
+        from browser import timer
 
-    // Data buffer for scrolling window
+        amplitude = 1  # Amplitude of the sine wave
+        frequency = 0.1  # Frequency for sine calculation
+        noise_level = 0.2  # Noise level added to sine wave
+        data_size = 100  # Number of data points displayed
+        x_data = list(range(data_size))  # X values (time steps)
+        y_data = [math.sin(i * frequency) for i in x_data]  # Initial sine wave Y values
+
+        # Expose y_data to the global JavaScript scope
+        window.y_data = y_data
+
+        # Function to generate sine wave with superimposed noise (10 Hz)
+        def generate_data():
+            global y_data
+            y_data.pop(0)  # Remove the oldest data point
+            last_x = x_data[-1]
+            sine_value = amplitude * math.sin((last_x + 1) * frequency)
+            noise = (random.random() - 0.5) * noise_level  # Add some random noise
+            new_value = sine_value + noise
+            y_data.append(new_value)
+            window.y_data = y_data  # Update the global y_data for JavaScript
+
+        # Generate data every 100 ms (10 Hz)
+        timer.set_interval(generate_data, 100)
+    </script>
+
+  <script type="text/javascript">
     const dataSize = 100;  // Number of data points displayed
     const xData = Array.from({ length: dataSize }, (_, i) => i);  // X values (time steps)
-    let yData = Array.from({ length: dataSize }, (_, i) => Math.sin(i * frequency));  // Initial sine wave Y values
 
     // uPlot chart configuration
     const options = {
@@ -57,36 +83,33 @@
       ],
     };
 
-    // Create the chart with initial data
-    const uPlotInstance = new uPlot(options, [xData, yData], document.getElementById("chart"));
+    // Create the chart but wait for y_data to be available
+    let uPlotInstance;
 
-    // Function to generate sine wave with superimposed noise (10 Hz)
-    function generateData() {
-      // Remove the oldest data point
-      yData.shift();
-
-      // Generate new sine wave value with noise
-      const lastX = xData[xData.length - 1];
-      const sineValue = amplitude * Math.sin((lastX + 1) * frequency);
-      const noise = (Math.random() - 0.5) * noiseLevel; // Add some random noise
-      const newValue = sineValue + noise;
-
-      // Append the new value
-      yData.push(newValue);
+    function initChart() {
+      if (window.y_data && window.y_data.length === dataSize) {
+        uPlotInstance = new uPlot(options, [xData, window.y_data], document.getElementById("chart"));
+        return true;
+      }
+      return false;
     }
 
     // Function to plot data at 5 Hz
     function plotData() {
-      uPlotInstance.setData([xData, yData]);
+      if (uPlotInstance && window.y_data && window.y_data.length === dataSize) {
+        uPlotInstance.setData([xData, window.y_data]);
+      }
     }
 
-    // Set intervals for both functions
-    const generateInterval = 20;  // 10 Hz = 100 ms per generation
-    const plotInterval = 20;      // 5 Hz = 200 ms per plotting
+    // Retry chart initialization every 100ms until y_data is available
+    const initInterval = setInterval(() => {
+      if (initChart()) {
+        clearInterval(initInterval);  // Stop trying once chart is initialized
+      }
+    }, 100);
 
-    setInterval(generateData, generateInterval);  // Generate sine wave with noise at 10 Hz
-    setInterval(plotData, plotInterval);          // Plot the updated data at 5 Hz
-
+    // Update the plot every 200 ms (5 Hz)
+    setInterval(plotData, 200);
   </script>
 </body>
 
