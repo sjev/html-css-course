@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Product Website</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+    <style>
+        /* Custom styles to limit content width */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero h1 {
+            margin-bottom: 1rem;
+        }
+
+        .hero img {
+            max-width: 300px;
+        }
+
+        .cta-button {
+            margin-top: 20px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .categories img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .product {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .discord-link {
+            text-decoration: none;
+            color: #7289da;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <nav class="container">
+        <ul>
+            <li><strong>YourLogo</strong></li>
+        </ul>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Full Catalog</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero container">
+        <img src="https://via.placeholder.com/300x300" alt="Product Image">
+        <h1>Capable Open Source Robotics</h1>
+        <a href="#" class="button primary cta-button">See in the Store</a>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="container">
+        <h2>Categories</h2>
+        <div class="categories">
+            <article>
+                <img src="https://via.placeholder.com/300x200" alt="Servos and Controllers">
+                <h3>Servos and Controllers</h3>
+            </article>
+            <article>
+                <img src="https://via.placeholder.com/300x200" alt="Accessories">
+                <h3>Accessories</h3>
+            </article>
+            <article>
+                <img src="https://via.placeholder.com/300x200" alt="Connectors">
+                <h3>Connectors</h3>
+            </article>
+        </div>
+    </section>
+
+    <!-- Promotional Section -->
+    <section class="product container">
+        <img src="https://via.placeholder.com/400x300" alt="Moteus Devkit">
+        <h2>Get started with the Moteus Devkit</h2>
+        <p>
+            Use a moteus devkit to get started with brushless motor control! See the capabilities enabled by accurate,
+            fast control with low-cost motors.
+        </p>
+        <a href="#" class="button secondary">See in the Store</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Join the Conversation: <a href="https://discord.gg/W4hUpBb" class="discord-link">Our Discord Server</a></p>
+        <p>© 2024 Your Product Website</p>
+    </footer>
+
+</body>
+
+</html>
