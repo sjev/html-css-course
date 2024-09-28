@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" />
   <link rel="stylesheet" href="custom.css" />
   <title>Your Product</title>
 </head>
@@ -53,11 +54,39 @@
       <h2>Get Started with Your Product</h2>
       <a href="#contact" role="button">Contact Us</a>
     </section>
+
+    <!-- code example -->
+    <section id="code-sample" class="banner banner-light">
+      <h2>Python Code Sample</h2>
+      <p>Here's an example of how you might use our product in your Python code:</p>
+      <pre><code class="language-python">
+import your_product
+
+def main():
+    device = your_product.connect()
+
+    # Read sensor data
+    temperature = device.read_temperature()
+    humidity = device.read_humidity()
+
+    # Process data
+    if temperature > 25 and humidity > 60:
+        device.activate_cooling()
+
+    # Log data
+    device.log_data(temperature, humidity)
+
+if __name__ == "__main__":
+    main()
+      </code></pre>
+    </section>
   </main>
 
   <footer>
     <small>© 2024 YourBrand. All rights reserved.</small>
   </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
 
 </html>
