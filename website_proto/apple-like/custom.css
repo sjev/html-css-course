@@ -68,28 +68,6 @@ footer {
   background-color: var(--background-dark);
 }
 
-/* Add these new styles for the code block */
-pre[class*="language-"] {
-  margin: 2rem auto;
-  max-width: 800px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-code[class*="language-"] {
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-@media (max-width: 768px) {
-  pre[class*="language-"] {
-    max-width: 90%;
-    font-size: 0.9rem;
-  }
-}
-
-
-
 
 /* debugging */
 
