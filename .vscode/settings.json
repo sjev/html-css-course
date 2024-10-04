@@ -2,5 +2,6 @@
   "files.autoSave": "onFocusChange",
   "editor.formatOnSave": true,
   "editor.wordWrap": "on",
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "liveServer.settings.port": 5501
 }
